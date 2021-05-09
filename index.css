@@ -1,0 +1,64 @@
+html,
+body {
+  background-color: #1a1a1b;
+  color: #e0e0e0;
+  font-family: "Unica One", sans-serif;
+  font-size: 20px;
+}
+
+body {
+  margin-top: 1rem;
+}
+
+h1 {
+  font-family: "Unica One", sans-serif;
+}
+
+.align.center {
+  text-align: center;
+}
+
+i.ion {
+  font-size: 30px;
+  font-weight: normal !important;
+}
+
+.summary {
+  margin-top: 10rem;
+}
+
+.summary .sensor-item {
+  text-align: center;
+}
+
+.summary .sensor-item .heading {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.summary .sensor-item .heading i.icon {
+  color: #e0e0e0;
+}
+
+.summary .value {
+  line-height: 100%;
+  font-size: 120px;
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+}
+
+.summary .unit {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footer {
+  margin-top: 10rem;
+  border-bottom: 100px solid transparent;
+}
+
+.svg-icon {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  margin-right: 0.2rem;
+  opacity: 0.5;
+}

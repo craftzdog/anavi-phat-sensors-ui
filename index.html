@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>Room Air Quality</title>
+
+    <script src="lib/moment.min.js"></script>
+    <script src="lib/moment-timezone-with-data-2012-2022.min.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="lib/semantic.min.css" />
+    <link rel="stylesheet" href="./index.css" />
+
+    <embed
+      src="./sounds/alert.mp3"
+      autostart="false"
+      width="0"
+      height="0"
+      id="alert"
+      enablejavascript="true"
+    />
+  </head>
+  <body>
+    <div class="ui container summary">
+      <div class="ui grid">
+        <div id="temperature" class="eight wide column sensor-item">
+          <div class="heading">
+            <img class="svg-icon" src="./images/thermometer-outline.svg" />
+            Temperature
+          </div>
+          <div class="value-container">
+            <span class="value"></span>
+            <span class="unit">℃</span>
+          </div>
+        </div>
+        <div id="humidity" class="eight wide column sensor-item">
+          <div class="heading">
+            <img class="svg-icon" src="./images/water-outline.svg" /> Humidity
+          </div>
+          <div class="value-container">
+            <span class="value"></span>
+            <span class="unit">%</span>
+          </div>
+        </div>
+        <div id="co2" class="sixteen wide column sensor-item">
+          <div class="heading">
+            <img class="svg-icon" src="./images/cloud-outline.svg" /> CO2
+          </div>
+          <div class="value-container">
+            <span class="value"></span>
+            <span class="unit">ppm</span>
+          </div>
+        </div>
+        <div id="pressure" class="sixteen wide column sensor-item">
+          <div class="heading">
+            <img class="svg-icon" src="./images/sunny-outline.svg" /> Pressure
+          </div>
+          <div class="value-container">
+            <span class="value"></span>
+            <span class="unit">hPa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      async function retrieveData() {
+        const res = await Promise.all([
+          fetch("./data/BH1750.json"),
+          fetch("./data/BMP180.json"),
+          fetch("./data/HTU21D.json"),
+          fetch("./data/MH_Z19.json"),
+        ]);
+        const data = (await Promise.all(res.map((r) => r.json()))).reduce(
+          (item, data) => ({
+            ...data,
+            ...item,
+          }),
+          {}
+        );
+        return data;
+      }
+
+      function updateValues() {
+        return retrieveData().then((data) => {
+          console.log("data:", data);
+          document.querySelector(
+            "#temperature .value"
+          ).innerHTML = new Intl.NumberFormat().format(
+            Math.round(data.temperature)
+          );
+          document.querySelector(
+            "#humidity .value"
+          ).innerHTML = new Intl.NumberFormat().format(
+            Math.round(data.humidity)
+          );
+          document.querySelector(
+            "#co2 .value"
+          ).innerHTML = new Intl.NumberFormat().format(data.co2);
+          document.querySelector(
+            "#pressure .value"
+          ).innerHTML = new Intl.NumberFormat().format(
+            Math.round(data.pressure)
+          );
+
+          if (data.co2 >= 1000) {
+            playAlertSound();
+          }
+        });
+      }
+
+      function playAlertSound() {
+        var audio = new Audio("./sounds/alert.mp3");
+        audio.play();
+      }
+
+      setInterval(updateValues, 60 * 1000);
+      updateValues().then(playAlertSound);
+    </script>
+  </body>
+</html>

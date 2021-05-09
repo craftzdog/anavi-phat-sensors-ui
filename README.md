@@ -1,7 +1,6 @@
-# ANAVI pHAT Sensors Recorder for Firestore
+# Web Interface for ANAVI pHAT & MH-Z19 Sensors
 
-Store [air quality data captured with ANAVI pHAT sensors and MH-Z19](https://www.crowdsupply.com/anavi-technology/infrared-phat) to Firestore.
-Written in C and Go.
+A web interface that displays [air quality data captured with ANAVI pHAT sensors and MH-Z19](https://www.crowdsupply.com/anavi-technology/infrared-phat).
 
 Supported sensors:
 
@@ -48,28 +47,10 @@ cd ./sensors/BH1750
 make
 ```
 
-## How to use
-
-### Check sensor data
-
-```sh
-go run ./test-sensors.go
-```
-
-### Record sensor data
-
-```sh
-go run ./write.go
-```
-
-### Check Firestore data
-
-```sh
-go run ./read.go
-```
-
 ## License
 
 C programs for retrieving pHAT sensor data are provided under MIT License by [Anavi Technology](https://github.com/AnaviTechnology/anavi-examples).
 
 The rest of the scripts are under MIT License by [Takuya Matsuyama](https://twitter.com/inkdrop_app).
+
+The sound effect is provided by [freeSFX](https://www.freesfx.co.uk/).

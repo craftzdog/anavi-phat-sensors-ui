@@ -1,7 +1,7 @@
 {
-  "name": "anavi-phat-sensors-recorder-firestore",
+  "name": "anavi-phat-sensors-ui",
   "version": "1.0.0",
-  "description": "Store air quality data captured with ANAVI pHAT sensors and MH-Z19 to Firestore",
+  "description": "A web interface for sensor data",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,9 +22,7 @@
     "url": "https://github.com/craftzdog/anavi-phat-sensors-recorder-firestore/issues"
   },
   "homepage": "https://github.com/craftzdog/anavi-phat-sensors-recorder-firestore#readme",
-  "dependencies": {
-    "firebase-admin": "^9.7.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "prettier": "^2.2.1"
   }
