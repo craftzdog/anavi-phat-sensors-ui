@@ -23,7 +23,8 @@ int main()
 		exit(-1);
 	}
 
-	printf("BH1750 Sensor Module\n");
-	printf("Light: %d Lux\n", lux);
+	printf("{ ");
+	printf("\"light\": %d ", lux);
+	printf("}");
 	return 0;
 }
