@@ -47,6 +47,17 @@ cd ./sensors/BH1750
 make
 ```
 
+## How to set up
+
+Configure root's crontab like so:
+
+```cron
+*/5 * * * * /usr/bin/python -m mh_z19                > /<path-to-project>/data/MH_Z19.json
+*/5 * * * * /<path-to-project>/sensors/HTU21D/HTU21D > /<path-to-project>/data/HTU21D.json
+*/5 * * * * /<path-to-project>/sensors/BMP180/BMP180 > /<path-to-project>/data/BMP180.json
+*/5 * * * * /<path-to-project>/sensors/BH1750/BH1750 > /<path-to-project>/data/BH1750.json
+```
+
 ## License
 
 C programs for retrieving pHAT sensor data are provided under MIT License by [Anavi Technology](https://github.com/AnaviTechnology/anavi-examples).
